@@ -15,13 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from firstapp.views import MyView,MyTemplateView,MyRedirectView
+from firstapp.views import MyView,MyTemplateView,MyRedirectView,MyListView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',MyView.as_view(),name='baseview'),
     path('index/<int:year>/<int:month>',MyView.as_view(),name='baseview'),
     path('mytemplate',MyTemplateView.as_view(),name='mytemplate'),
     path('redirectview', MyRedirectView.as_view(), name='redirectview'),
+    path('listview', MyListView.as_view(), name='listview'),
 
 
 ]
