@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from firstapp.views import MyView
+from firstapp.views import MyView,MyTemplateView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',MyView.as_view(),name='baseview'),
-    path('index/<int:year>/<int:month>',MyView.as_view(),name='baseview')
+    path('index/<int:year>/<int:month>',MyView.as_view(),name='baseview'),
+    path('mytemplate',MyTemplateView.as_view(),name='mytemplate'),
+
 ]
