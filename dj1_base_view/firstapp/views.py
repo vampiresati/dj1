@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django.views import View
 from django.views.generic.base import TemplateView,RedirectView
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView,UpdateView
+from django.views.generic.edit import CreateView,UpdateView,DeleteView
 from .models import Student
 class MyView(View):
 
@@ -46,6 +46,11 @@ class StudentUpdateView(UpdateView):
     model=Student
     template_name_suffix = '_update_form'
     fields=['first_name','last_name','roll_number']
+    # success_url = reverse_lazy('listview')
+    def get_success_url(self):
+        return reverse('listview')
+class StudentDeleteView(DeleteView):
+    model=Student
     # success_url = reverse_lazy('listview')
     def get_success_url(self):
         return reverse('listview')
