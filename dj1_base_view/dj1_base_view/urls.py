@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from firstapp.views import MyView,MyTemplateView,MyRedirectView,MyListView
+from firstapp.views import MyView,MyTemplateView,MyRedirectView,MyListView,StudentCreateView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',MyView.as_view(),name='baseview'),
@@ -23,6 +23,8 @@ urlpatterns = [
     path('mytemplate',MyTemplateView.as_view(),name='mytemplate'),
     path('redirectview', MyRedirectView.as_view(), name='redirectview'),
     path('listview', MyListView.as_view(), name='listview'),
+    path('createview', StudentCreateView.as_view(), name='createview'),
+
 
 
 ]

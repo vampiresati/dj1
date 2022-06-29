@@ -1,10 +1,12 @@
 from django.shortcuts import render
-
+from django.urls import reverse_lazy
+from django.urls import reverse
 # Create your views here.
 from django.http import HttpResponse
 from django.views import View
 from django.views.generic.base import TemplateView,RedirectView
 from django.views.generic.list import ListView
+from django.views.generic.edit import CreateView
 from .models import Student
 class MyView(View):
 
@@ -32,5 +34,11 @@ class MyListView1(ListView):
     paginate_by = 2
 class MyListView(ListView):
     model = Student
-    paginate_by = 2
+    paginate_by = 10
     context_object_name = 'student_list'
+class StudentCreateView(CreateView):
+    model=Student
+    fields=['first_name','last_name','roll_number']
+    # success_url = reverse_lazy('listview')
+    def get_success_url(self):
+        return reverse('listview')
