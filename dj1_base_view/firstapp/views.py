@@ -76,3 +76,14 @@ class StudentFormView(FormView):
         std.save()
         form.send_email()
         return super().form_valid(form)
+
+class StudentModelForm(forms.ModelForm):
+    class Meta:
+        model=Student
+        fields = ['first_name', 'last_name', 'roll_number']
+# fm=StudentModelForm()
+# print(fm)
+
+std= Student.objects.all()
+fm=StudentModelForm(instance=std[0])
+print(fm)
