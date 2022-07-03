@@ -13,3 +13,4 @@ class Student(models.Model):
 # sudo apt-get install graphviz graphviz-dev
 # pip3 install pygraphviz
 # pip3 install django-extensions
+#  python3 manage.py graph_models firstapp -g -o model_vi.png
