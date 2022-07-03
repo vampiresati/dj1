@@ -9,11 +9,6 @@ class Student(models.Model):
     class Meta:
         verbose_name='Student'
 
-from django.apps import apps
-for app_config in apps.get_app_configs():
-    l=app_config.name
-    for model in app_config.get_models():
-        n=model._meta.object_name
-        print('apps',l,'models',n)
-from firstapp.models import Parent
-Parent._meta.get_fields()
+####
+# pip3 install pygraphviz
+# pip3 install django-extensions
