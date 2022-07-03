@@ -15,3 +15,5 @@ for app_config in apps.get_app_configs():
     for model in app_config.get_models():
         n=model._meta.object_name
         print('apps',l,'models',n)
+from firstapp.models import Parent
+Parent._meta.get_fields()
