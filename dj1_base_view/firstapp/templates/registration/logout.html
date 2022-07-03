@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>Logoutiew</title>
+
+    </head>
+
+    <body>
+<form method="POST">{% csrf_token %}
+    <p>logout out</p>
+<!-- form variable -->
+ {{ form.as_p }}
+
+  <input type="submit" name="sumbit">
+</form>
+    </body>
+
+</html>

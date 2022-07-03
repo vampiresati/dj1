@@ -10,6 +10,8 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView,UpdateView,DeleteView,FormView
 from .models import Student
 from django import forms
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate,login,logout
 class MyView(View):
 
     def get(self, request, *args, **kwargs):
@@ -87,3 +89,11 @@ class StudentModelForm(forms.ModelForm):
 std= Student.objects.all()
 fm=StudentModelForm(instance=std[0])
 print(fm)
+class login_view(View):
+    def get(self,request,username=None,password=None):
+        user=authenticate(username=username,password=password)
+        if user is not None:
+            print(user)
+            login(request,user)
+            return HttpResponse('hi')
+        return HttpResponse('hi')

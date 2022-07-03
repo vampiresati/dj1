@@ -14,8 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from firstapp.views import MyView,MyTemplateView,MyRedirectView,MyListView,StudentCreateView,StudentUpdateView,StudentDeleteView,StudentDetailView,StudentFormView
+from django.urls import path,include
+from firstapp.views import MyView,MyTemplateView,MyRedirectView,MyListView,StudentCreateView,StudentUpdateView,StudentDeleteView,StudentDetailView,StudentFormView,login_view
+from django.contrib.auth import views as l
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',MyView.as_view(),name='baseview'),
@@ -27,6 +28,11 @@ urlpatterns = [
     path('updateview/<pk>', StudentUpdateView.as_view(), name='updateview'),
     path('deleteview/<pk>', StudentDeleteView.as_view(), name='deleteview'),
     path('detailview/<pk>', StudentDetailView.as_view(), name='detailview'),
-    path('formview', StudentFormView.as_view(), name='formview')
+    path('formview', StudentFormView.as_view(), name='formview'),
+    path('login/<str:username>/<str:password>', login_view.as_view(), name='login'),
+    # path('accounts/', include('django.contrib.auth.urls')),
 
+    path("login/", l.LoginView.as_view(), name="login"),
+    path("logout/",l.LogoutView.as_view(template_name='registration/logout.html'),name='logout'),
+    path('chnage_pwd',l.PasswordChangeView.as_view(template_name='registration/change-password.html'),name='password_change')
 ]
