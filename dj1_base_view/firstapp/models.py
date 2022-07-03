@@ -10,5 +10,6 @@ class Student(models.Model):
         verbose_name='Student'
 
 ####
+# sudo apt-get install graphviz graphviz-dev
 # pip3 install pygraphviz
 # pip3 install django-extensions
