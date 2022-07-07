@@ -8,7 +8,6 @@ from django.views.generic.base import TemplateView,RedirectView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView,UpdateView,DeleteView,FormView
-from .models import Student
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
@@ -33,67 +32,5 @@ class MyRedirectView(RedirectView):
     # def get_redirect_url(self, *args, **kwargs):
     #
     #     return super().get_redirect_url(self, *args, **kwargs)
-class MyListView1(ListView):
-    model = Student
-    paginate_by = 2
-class MyListView(ListView):
-    model = Student
-    paginate_by = 10
-    context_object_name = 'student_list'
-class StudentCreateView(CreateView):
-    model=Student
-    fields=['first_name','last_name','roll_number']
-    # success_url = reverse_lazy('listview')
-    def get_success_url(self):
-        return reverse('listview')
-class StudentUpdateView(UpdateView):
-    model=Student
-    template_name_suffix = '_update_form'
-    fields=['first_name','last_name','roll_number']
-    # success_url = reverse_lazy('listview')
-    def get_success_url(self):
-        return reverse('listview')
-class StudentDeleteView(DeleteView):
-    model=Student
-    # success_url = reverse_lazy('listview')
-    def get_success_url(self):
-        return reverse('listview')
-class StudentDetailView(DetailView):
-    model=Student
-class StudentForm(forms.Form):
-    first_name=forms.CharField(max_length=50)
-    last_name=forms.CharField(max_length=50)
-    roll_number=forms.IntegerField()
-    def send_email(self):
-        pass
-class StudentFormView(FormView):
-    form_class = StudentForm
-    success_url = reverse_lazy('listview')
-    template_name = 'studentform.html'
-    def form_valid(self, form):
-        first_name = form.cleaned_data['first_name']
-        last_name = form.cleaned_data['last_name']
-        roll_number=form.cleaned_data['roll_number']
-        std=Student(first_name=first_name,last_name=last_name,roll_number=roll_number)
-        std.save()
-        form.send_email()
-        return super().form_valid(form)
 
-class StudentModelForm(forms.ModelForm):
-    class Meta:
-        model=Student
-        fields = ['first_name', 'last_name', 'roll_number']
-# fm=StudentModelForm()
-# print(fm)
 
-std= Student.objects.all()
-fm=StudentModelForm(instance=std[0])
-print(fm)
-class login_view(View):
-    def get(self,request,username=None,password=None):
-        user=authenticate(username=username,password=password)
-        if user is not None:
-            print(user)
-            login(request,user)
-            return HttpResponse('hi')
-        return HttpResponse('hi')

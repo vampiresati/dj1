@@ -26,6 +26,7 @@ SECRET_KEY = '1$t!su$efpj91-ohtlny%$%zs%&7$^dr&^awov9eg-v33hql5$'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+AUTH_USER_MODEL = 'firstapp.MyUser'
 
 
 # Application definition
